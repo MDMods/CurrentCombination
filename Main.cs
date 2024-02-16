@@ -8,7 +8,8 @@ namespace CurrentCombination
 
         public override void OnInitializeMelon()
         {
-            base.OnInitializeMelon();
+            Load();
+            LoggerInstance.Msg("CurrentCombination has loaded correctly!");
         }
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)

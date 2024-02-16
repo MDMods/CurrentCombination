@@ -27,8 +27,6 @@ namespace CurrentCombination.Patches
 
             CreateGirlObject(stageDesigner, buttonTransform);
             CreateElfinObject(stageDesigner, buttonTransform);
-
-            //CreateElfinObject(__instance, levelDesignerTransform, position);
         }
     }
 }

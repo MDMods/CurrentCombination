@@ -1,9 +1,8 @@
-﻿using Il2Cpp;
-using Il2CppAssets.Scripts.Database;
+﻿using Il2CppAssets.Scripts.Database;
 using Il2CppAssets.Scripts.PeroTools.Commons;
 using Il2CppAssets.Scripts.PeroTools.Managers;
-using Il2CppAssets.Scripts.UI.Panels;
 using Il2CppNewtonsoft.Json.Linq;
+using MelonLoader;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +15,16 @@ namespace CurrentCombination
         public static Text DisplayData = null;
         public static GameObject GirlObject = null;
         public static GameObject ElfinObject = null;
+
+        private static MelonPreferences_Entry<bool> showInSongsMenu;
+        private static MelonPreferences_Entry<bool> showInSongView;
+
+        public static void Load()
+        {
+            MelonPreferences_Category settings = MelonPreferences.CreateCategory("CurrentCombination");
+            showInSongsMenu = settings.CreateEntry<bool>(nameof(showInSongsMenu), true);
+            showInSongView = settings.CreateEntry<bool>(nameof(showInSongView), true);
+        }
 
 
         public static string DisplayString()
@@ -74,6 +83,7 @@ namespace CurrentCombination
 
         public static void CreateDisplay(Text baseText, Transform baseTransform)
         {
+            if (!showInSongsMenu.Value) return;
             if (DisplayData != null) return;
 
             DisplayData = UnityEngine.Object.Instantiate(baseText, baseTransform) as Text;
@@ -85,6 +95,7 @@ namespace CurrentCombination
         }
         public static void CreateGirlObject(GameObject baseObject, Transform baseTransform)
         {
+            if (!showInSongView.Value) return;
             if (GirlObject != null) return;
 
             GirlObject = UnityEngine.Object.Instantiate(baseObject, baseTransform);
@@ -96,6 +107,7 @@ namespace CurrentCombination
         }
         public static void CreateElfinObject(GameObject baseObject, Transform baseTransform)
         {
+            if (!showInSongView.Value) return;
             if (ElfinObject != null) return;
 
             ElfinObject = UnityEngine.Object.Instantiate(baseObject.gameObject, baseTransform);
@@ -105,6 +117,25 @@ namespace CurrentCombination
             ElfinObject.GetComponent<RectTransform>().position = new Vector3(position.x + 6f, position.y + 0.4f, position.z);
             ElfinObject.transform.GetChild(0).GetComponent<Text>().text = elfin;
         }
-        
+
+        public static void UpdateDisplay()
+        {
+            if (DisplayData == null) return;
+            DisplayData.text = DisplayString();
+        }
+
+        public static void UpdateGirlObject()
+        {
+            if (GirlObject == null) return;
+            GirlObject.transform.GetChild(0).GetComponent<Text>().text = girl;
+        }
+
+        public static void UpdateElfinObject()
+        {
+            if (ElfinObject == null) return;
+            ElfinObject.transform.GetChild(0).GetComponent<Text>().text = elfin;
+
+        }
+
     }
 }
