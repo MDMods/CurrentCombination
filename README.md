@@ -8,4 +8,3 @@ Shows the current selected character and elfin.
 
 ### TODO
 * Add configuration (enable/disable which displays to use)
-* Fix bug with VictoryScreen switcher with the DJMax Screen and a song with a very long title
