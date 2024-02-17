@@ -1,4 +1,5 @@
-﻿using Il2CppAssets.Scripts.Database;
+﻿using Il2Cpp;
+using Il2CppAssets.Scripts.Database;
 using Il2CppAssets.Scripts.PeroTools.Commons;
 using Il2CppAssets.Scripts.PeroTools.Managers;
 using Il2CppNewtonsoft.Json.Linq;
@@ -99,6 +100,7 @@ namespace CurrentCombination
             if (GirlObject != null) return;
 
             GirlObject = UnityEngine.Object.Instantiate(baseObject, baseTransform);
+            GameObject.Destroy(GirlObject.GetComponent<LongSongNameController>());
             GirlObject.name = "GirlDisplayObject";
             GirlObject.transform.GetChild(0).GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
             Vector3 position = baseTransform.position;
@@ -111,6 +113,7 @@ namespace CurrentCombination
             if (ElfinObject != null) return;
 
             ElfinObject = UnityEngine.Object.Instantiate(baseObject.gameObject, baseTransform);
+            GameObject.Destroy(GirlObject.GetComponent<LongSongNameController>());
             ElfinObject.name = "ElfinDisplayObject";
             ElfinObject.transform.GetChild(0).GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
             Vector3 position = baseTransform.position;
