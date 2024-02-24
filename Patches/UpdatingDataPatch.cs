@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 using Il2CppAssets.Scripts.Database;
-using static CurrentCombination.ModHandler;
+using static CurrentCombination.Managers.ModManager;
 
 namespace CurrentCombination.Patches
 {
@@ -9,20 +9,16 @@ namespace CurrentCombination.Patches
     {
         [HarmonyPostfix]
         [HarmonyPatch(nameof(DataHelper.selectedRoleIndex), MethodType.Setter)]
-        public static void UpdateGirl()
+        public static void GirlSetter()
         {
-            GetCurrentGirl();
-            UpdateDisplay();
-            UpdateGirlObject();
+            UpdateGirl();
         }
 
         [HarmonyPostfix]
         [HarmonyPatch(nameof(DataHelper.selectedElfinIndex), MethodType.Setter)]
-        public static void UpdateElfin()
+        public static void ElfinSetter()
         {
-            GetCurrentElfin();
-            UpdateDisplay();
-            UpdateElfinObject();
+            UpdateElfin();
         }
     }
 }

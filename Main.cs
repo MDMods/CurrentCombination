@@ -1,14 +1,14 @@
-﻿using MelonLoader;
-using static CurrentCombination.ModHandler;
+﻿using CurrentCombination.Managers;
+using MelonLoader;
 
 namespace CurrentCombination
 {
     public class Main : MelonMod
     {
-
         public override void OnInitializeMelon()
         {
-            Load();
+            SettingsManager.Load();
+            UIManager.Load();
             LoggerInstance.Msg("CurrentCombination has loaded correctly!");
         }
 
@@ -16,9 +16,8 @@ namespace CurrentCombination
         {
             if (sceneName == "UISystem_PC")
             {
-                // Get current elfin first to stablish the base length of the string
-                GetCurrentElfin();
-                GetCurrentGirl();
+                ModManager.UpdateGirl();
+                ModManager.UpdateElfin();
             }
         }
     }

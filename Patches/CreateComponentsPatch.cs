@@ -2,18 +2,19 @@
 using Il2Cpp;
 using Il2CppAssets.Scripts.UI.Panels;
 using UnityEngine;
-using static CurrentCombination.ModHandler;
+using static CurrentCombination.Managers.UIManager;
 
 namespace CurrentCombination.Patches
 {
     [Harmony]
-    internal static class GettingObjectsPatch
+    internal static class CreateComponentsPatch
     {
         [HarmonyPostfix]
         [HarmonyPatch(typeof(PnlStage), nameof(PnlStage.Awake))]
         private static void PnlStagePostfix(PnlStage __instance)
         {
-            CreateDisplay(__instance.artistNameTitle, __instance.stageAchievementPercent.transform);
+            CreateMainText(__instance.artistNameTitle, __instance.stageAchievementPercent.transform);
+            UpdateMainText();
         }
 
         [HarmonyPostfix]
@@ -26,7 +27,9 @@ namespace CurrentCombination.Patches
             Transform buttonTransform = __instance.startButton.transform;
 
             CreateGirlObject(stageDesigner, buttonTransform);
+            UpdateGirlObject();
             CreateElfinObject(stageDesigner, buttonTransform);
+            UpdateElfinObject();
         }
     }
 }
