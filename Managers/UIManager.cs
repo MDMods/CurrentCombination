@@ -1,5 +1,4 @@
-﻿using Il2Cpp;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace CurrentCombination.Managers
@@ -9,23 +8,29 @@ namespace CurrentCombination.Managers
 
     internal static class UIManager
     {
+        internal static void CreateText(ref Text textObject, string textName, Text baseText, Transform baseTransform, Vector3 newPosition)
+        {
+            textObject = UnityEngine.Object.Instantiate(baseText, baseTransform);
+            textObject.name = textName;
+            textObject.text = "";
+            textObject.resizeTextForBestFit = true;
+            textObject.GetComponent<RectTransform>().position = newPosition;
+        }
+
         //--------------------------------------------------------------------+
         // Main Text
         //--------------------------------------------------------------------+
         internal static Text MainText = null;
+
         public static void CreateMainText(Text baseText, Transform baseTransform)
         {
             if (!ShowInSongsMenu) return;
             if (MainText != null) return;
 
-            MainText = UnityEngine.Object.Instantiate(baseText, baseTransform);
-            MainText.name = "DisplayDataText";
-            MainText.text = "";
-            MainText.resizeTextForBestFit = true;
-            MainText.GetComponent<RectTransform>().position = new Vector3(6f, -5f, 100f);
+            CreateText(ref MainText, "DisplayDataText", baseText, baseTransform, new Vector3(6f, -5f, 100f));
         }
 
-        internal static void UpdateMainText()
+        public static void UpdateMainText()
         {
             if (MainText == null) return;
             string text = string.Empty;
@@ -38,56 +43,34 @@ namespace CurrentCombination.Managers
         //--------------------------------------------------------------------+
         // Girl and elfin
         //--------------------------------------------------------------------+
-        internal static void CreateObject(ref GameObject original, string ObjectName, GameObject baseObject, Transform baseTransform, Vector3 offset)
+        internal static Text GirlObject = null;
+        internal static Text ElfinObject = null;
+
+        public static void CreateGirlObject(Text baseObject, Transform baseTransform)
         {
             if (!ShowInSongView) return;
-            if (original != null) return;
-            GameObject gameObject = UnityEngine.Object.Instantiate(baseObject, baseTransform);
-            UnityEngine.Object.Destroy(gameObject.GetComponent<LongSongNameController>());
-
-            gameObject.name = ObjectName;
-            gameObject.transform.GetChild(0).GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
-            Vector3 position = baseTransform.position;
-            gameObject.GetComponent<RectTransform>().position = position + offset;
-            gameObject.transform.GetChild(0).GetComponent<Text>().text = "";
-
-            original = gameObject;
+            if (GirlObject != null) return;
+            CreateText(ref GirlObject, "GirlDisplayObject", baseObject, baseTransform, new Vector3(7.5f, -4.6f, 100f));
         }
 
-        internal static void UpdateObject(ref GameObject displayObject, string text)
+        public static void CreateElfinObject(Text baseObject, Transform baseTransform)
         {
-            if (displayObject == null) return;
-            displayObject.transform.GetChild(0).GetComponent<Text>().text = text;
+            if (!ShowInSongView) return;
+            if (ElfinObject != null) return;
+            CreateText(ref ElfinObject, "ElfinDisplayObject", baseObject, baseTransform, new Vector3(7.5f, -5f, 100f));
         }
 
-        //--------------------------------------------------------------------+
-        // Girl
-        //--------------------------------------------------------------------+
-        internal static GameObject GirlObject = null;
-
-        public static void CreateGirlObject(GameObject baseObject, Transform baseTransform)
+        public static void UpdateGirlObject()
         {
-            CreateObject(ref GirlObject, "GirlDisplayObject", baseObject, baseTransform, new Vector3(6f, 0.8f, 0f));
-        }
-        internal static void UpdateGirlObject()
-        {
-            UpdateObject(ref GirlObject, Girl);
+            if (GirlObject == null) return;
+            GirlObject.text = Girl;
         }
 
-        //--------------------------------------------------------------------+
-        // Elfin
-        //--------------------------------------------------------------------+
-        internal static GameObject ElfinObject = null;
-
-        public static void CreateElfinObject(GameObject baseObject, Transform baseTransform)
+        public static void UpdateElfinObject()
         {
-            CreateObject(ref ElfinObject, "ElfinDisplayObject", baseObject, baseTransform, new Vector3(6f, 0.4f, 0f));
+            if (ElfinObject == null) return;
+            ElfinObject.text = Elfin;
         }
-        internal static void UpdateElfinObject()
-        {
-            UpdateObject(ref ElfinObject, Elfin);
-        }
-
 
         //--------------------------------------------------------------------+
         // Update Components Events

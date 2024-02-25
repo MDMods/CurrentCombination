@@ -2,6 +2,7 @@
 using Il2Cpp;
 using Il2CppAssets.Scripts.UI.Panels;
 using UnityEngine;
+using UnityEngine.UI;
 using static CurrentCombination.Managers.UIManager;
 
 namespace CurrentCombination.Patches
@@ -23,12 +24,12 @@ namespace CurrentCombination.Patches
         {
             if (GirlObject != null && ElfinObject != null) return;
 
-            GameObject stageDesigner = GameObject.Find("TxtStageDesigner").transform.GetChild(0).gameObject;
+            Text baseText = GameObject.Find("TxtArtist").gameObject.GetComponent<Text>();
             Transform buttonTransform = __instance.startButton.transform;
 
-            CreateGirlObject(stageDesigner, buttonTransform);
+            CreateGirlObject(baseText, buttonTransform);
             UpdateGirlObject();
-            CreateElfinObject(stageDesigner, buttonTransform);
+            CreateElfinObject(baseText, buttonTransform);
             UpdateElfinObject();
         }
     }
