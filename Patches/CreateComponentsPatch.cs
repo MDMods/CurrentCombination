@@ -14,7 +14,7 @@ namespace CurrentCombination.Patches
         [HarmonyPatch(typeof(PnlStage), nameof(PnlStage.Awake))]
         private static void PnlStagePostfix(PnlStage __instance)
         {
-            CreateMainText(__instance.artistNameTitle, __instance.stageAchievementPercent.transform);
+            CreateMainText(__instance.artistNameTitle, GameObject.Find("Info").transform);
             UpdateMainText();
         }
 
