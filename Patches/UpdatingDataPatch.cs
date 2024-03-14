@@ -9,14 +9,14 @@ internal static class UpdatingDataPatch
 {
     [HarmonyPostfix]
     [HarmonyPatch(nameof(DataHelper.selectedRoleIndex), MethodType.Setter)]
-    public static void GirlSetter()
+    internal static void GirlSetter()
     {
         UpdateGirl();
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(nameof(DataHelper.selectedElfinIndex), MethodType.Setter)]
-    public static void ElfinSetter()
+    internal static void ElfinSetter()
     {
         UpdateElfin();
     }

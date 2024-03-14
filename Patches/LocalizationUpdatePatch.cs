@@ -7,7 +7,7 @@ namespace CurrentCombination.Patches;
 [HarmonyPatch(typeof(SwitchLanguages), nameof(SwitchLanguages.OnClick))]
 internal class LocalizationUpdatePatch
 {
-    public static void Postfix()
+    internal static void Postfix()
     {
         UpdateGirl();
         UpdateElfin();

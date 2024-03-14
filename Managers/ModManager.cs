@@ -7,8 +7,8 @@ namespace CurrentCombination.Managers;
 
 internal static class ModManager
 {
-    internal static string _girl = string.Empty;
-    internal static string _elfin = string.Empty;
+    private static string _girl = string.Empty;
+    private static string _elfin = string.Empty;
 
     private static readonly HashSet<int> NotBaseCharacters = new()
     {
@@ -22,41 +22,41 @@ internal static class ModManager
         CharacterDefine.kagamine_rin_len,
     };
 
-    public static string Girl
+    internal static string Girl
     {
         get => _girl;
-        set
+        private set
         {
             _girl = value;
             UpdateGirlActionInvoke();
         }
     }
 
-    public static string Elfin
+    internal static string Elfin
     {
         get => _elfin;
-        set
+        private set
         {
             _elfin = value;
             UpdateElfinActionInvoke();
         }
     }
 
-    public static event Action UpdateGirlAction;
+    internal static event Action UpdateGirlAction;
 
-    internal static void UpdateGirlActionInvoke()
+    private static void UpdateGirlActionInvoke()
     {
         UpdateGirlAction?.Invoke();
     }
 
-    public static event Action UpdateElfinAction;
+    internal static event Action UpdateElfinAction;
 
-    internal static void UpdateElfinActionInvoke()
+    private static void UpdateElfinActionInvoke()
     {
         UpdateElfinAction?.Invoke();
     }
 
-    public static void UpdateGirl()
+    internal static void UpdateGirl()
     {
         var characterIndex = DataHelper.selectedRoleIndex;
         if (characterIndex < 0)
@@ -76,7 +76,7 @@ internal static class ModManager
         Girl = character?["cosName"]?.ToString() ?? "";
     }
 
-    public static void UpdateElfin()
+    internal static void UpdateElfin()
     {
         var elfinIndex = DataHelper.selectedElfinIndex;
         if (elfinIndex < 0)

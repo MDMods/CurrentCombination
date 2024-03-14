@@ -12,7 +12,7 @@ internal static class CreateComponentsPatch
 {
     [HarmonyPostfix]
     [HarmonyPatch(typeof(PnlStage), nameof(PnlStage.Awake))]
-    private static void PnlStagePostfix(PnlStage __instance)
+    internal static void PnlStagePostfix(PnlStage __instance)
     {
         CreateMainText(__instance.artistNameTitle, GameObject.Find("Info").transform);
         UpdateMainText();
@@ -20,7 +20,7 @@ internal static class CreateComponentsPatch
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(PnlPreparation), nameof(PnlPreparation.Awake))]
-    private static void PnlPreparationPostfix(PnlPreparation __instance)
+    internal static void PnlPreparationPostfix(PnlPreparation __instance)
     {
         if (GirlObject != null && ElfinObject != null) return;
 
