@@ -12,15 +12,15 @@ internal static class UIManager
     //--------------------------------------------------------------------+
     // Main Text
     //--------------------------------------------------------------------+
-    internal static Text MainText;
+    private static Text MainText { get; set; }
 
     //--------------------------------------------------------------------+
     // Girl and elfin
     //--------------------------------------------------------------------+
-    internal static Text GirlObject;
-    internal static Text ElfinObject;
+    internal static Text GirlObject { get; private set; }
+    internal static Text ElfinObject { get; private set; }
 
-    internal static void CreateText(ref Text textObject, string textName, Text baseText, Transform baseTransform,
+    private static void CreateText(out Text textObject, string textName, Text baseText, Transform baseTransform,
         Vector3 newPosition)
     {
         textObject = Object.Instantiate(baseText, baseTransform);
@@ -31,15 +31,20 @@ internal static class UIManager
         textObject.gameObject.SetActive(true);
     }
 
-    public static void CreateMainText(Text baseText, Transform baseTransform)
+    internal static void CreateMainText(Text baseText, Transform baseTransform)
     {
         if (!ShowInSongsMenu) return;
         if (MainText != null) return;
 
-        CreateText(ref MainText, "DisplayDataText", baseText, baseTransform, new Vector3(6f, -5f, 100f));
+        CreateText(out var mainText,
+            "DisplayDataText",
+            baseText,
+            baseTransform,
+            new Vector3(6f, -5f, 100f));
+        MainText = mainText;
     }
 
-    public static void UpdateMainText()
+    internal static void UpdateMainText()
     {
         if (MainText == null) return;
         var text = string.Empty;
@@ -49,27 +54,37 @@ internal static class UIManager
         MainText.text = text;
     }
 
-    public static void CreateGirlObject(Text baseObject, Transform baseTransform)
+    internal static void CreateGirlObject(Text baseObject, Transform baseTransform)
     {
         if (!ShowInSongView) return;
         if (GirlObject != null) return;
-        CreateText(ref GirlObject, "GirlDisplayObject", baseObject, baseTransform, new Vector3(7.5f, -4.6f, 100f));
+        CreateText(out var girlObject,
+            "GirlDisplayObject",
+            baseObject,
+            baseTransform,
+            new Vector3(7.5f, -4.6f, 100f));
+        GirlObject = girlObject;
     }
 
-    public static void CreateElfinObject(Text baseObject, Transform baseTransform)
+    internal static void CreateElfinObject(Text baseObject, Transform baseTransform)
     {
         if (!ShowInSongView) return;
         if (ElfinObject != null) return;
-        CreateText(ref ElfinObject, "ElfinDisplayObject", baseObject, baseTransform, new Vector3(7.5f, -5f, 100f));
+        CreateText(out var elfinObject,
+            "ElfinDisplayObject",
+            baseObject,
+            baseTransform,
+            new Vector3(7.5f, -5f, 100f));
+        ElfinObject = elfinObject;
     }
 
-    public static void UpdateGirlObject()
+    internal static void UpdateGirlObject()
     {
         if (GirlObject == null) return;
         GirlObject.text = Girl;
     }
 
-    public static void UpdateElfinObject()
+    internal static void UpdateElfinObject()
     {
         if (ElfinObject == null) return;
         ElfinObject.text = Elfin;
@@ -78,7 +93,7 @@ internal static class UIManager
     //--------------------------------------------------------------------+
     // Update Components Events
     //--------------------------------------------------------------------+
-    public static void Load()
+    internal static void Load()
     {
         UpdateGirlAction += UpdateMainText;
         UpdateGirlAction += UpdateGirlObject;
