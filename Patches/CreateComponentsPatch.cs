@@ -23,8 +23,9 @@ namespace CurrentCombination.Patches
         private static void PnlPreparationPostfix(PnlPreparation __instance)
         {
             if (GirlObject != null && ElfinObject != null) return;
-
-            Text baseText = GameObject.Find("TxtArtist").gameObject.GetComponent<Text>();
+            
+            GameObject artistText = GameObject.Find("ImgArtistMask").transform.Find("TxtArtist").gameObject;
+            Text baseText = artistText.GetComponent<Text>();
             Transform buttonTransform = __instance.startButton.transform;
 
             CreateGirlObject(baseText, buttonTransform);

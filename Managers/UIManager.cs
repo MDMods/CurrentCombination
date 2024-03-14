@@ -15,6 +15,7 @@ namespace CurrentCombination.Managers
             textObject.text = "";
             textObject.resizeTextForBestFit = true;
             textObject.GetComponent<RectTransform>().position = newPosition;
+            textObject.gameObject.SetActive(true);
         }
 
         //--------------------------------------------------------------------+
