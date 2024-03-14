@@ -10,8 +10,8 @@ internal static class ModManager
     private static string _girl = string.Empty;
     private static string _elfin = string.Empty;
 
-    private static readonly HashSet<int> NotBaseCharacters = new()
-    {
+    private static readonly HashSet<int> NotBaseCharacters =
+    [
         CharacterDefine.yume,
         CharacterDefine.neko,
         CharacterDefine.reimu,
@@ -20,7 +20,7 @@ internal static class ModManager
         CharacterDefine.ark_nights_amiya,
         CharacterDefine.hastune_miku,
         CharacterDefine.kagamine_rin_len,
-    };
+    ];
 
     internal static string Girl
     {
