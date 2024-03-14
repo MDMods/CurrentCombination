@@ -5,33 +5,32 @@ using UnityEngine;
 using UnityEngine.UI;
 using static CurrentCombination.Managers.UIManager;
 
-namespace CurrentCombination.Patches
+namespace CurrentCombination.Patches;
+
+[Harmony]
+internal static class CreateComponentsPatch
 {
-    [Harmony]
-    internal static class CreateComponentsPatch
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(PnlStage), nameof(PnlStage.Awake))]
+    private static void PnlStagePostfix(PnlStage __instance)
     {
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(PnlStage), nameof(PnlStage.Awake))]
-        private static void PnlStagePostfix(PnlStage __instance)
-        {
-            CreateMainText(__instance.artistNameTitle, GameObject.Find("Info").transform);
-            UpdateMainText();
-        }
+        CreateMainText(__instance.artistNameTitle, GameObject.Find("Info").transform);
+        UpdateMainText();
+    }
 
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(PnlPreparation), nameof(PnlPreparation.Awake))]
-        private static void PnlPreparationPostfix(PnlPreparation __instance)
-        {
-            if (GirlObject != null && ElfinObject != null) return;
-            
-            GameObject artistText = GameObject.Find("ImgArtistMask").transform.Find("TxtArtist").gameObject;
-            Text baseText = artistText.GetComponent<Text>();
-            Transform buttonTransform = __instance.startButton.transform;
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(PnlPreparation), nameof(PnlPreparation.Awake))]
+    private static void PnlPreparationPostfix(PnlPreparation __instance)
+    {
+        if (GirlObject != null && ElfinObject != null) return;
 
-            CreateGirlObject(baseText, buttonTransform);
-            UpdateGirlObject();
-            CreateElfinObject(baseText, buttonTransform);
-            UpdateElfinObject();
-        }
+        var artistText = GameObject.Find("ImgArtistMask").transform.Find("TxtArtist").gameObject;
+        var baseText = artistText.GetComponent<Text>();
+        var buttonTransform = __instance.startButton.transform;
+
+        CreateGirlObject(baseText, buttonTransform);
+        UpdateGirlObject();
+        CreateElfinObject(baseText, buttonTransform);
+        UpdateElfinObject();
     }
 }
