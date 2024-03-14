@@ -1,6 +1,7 @@
 ﻿using Il2CppAssets.Scripts.Database;
 using Il2CppAssets.Scripts.PeroTools.Commons;
 using Il2CppAssets.Scripts.PeroTools.Managers;
+using Il2CppPeroPeroGames.GlobalDefines;
 
 namespace CurrentCombination.Managers;
 
@@ -11,14 +12,14 @@ internal static class ModManager
 
     private static readonly HashSet<int> NotBaseCharacters = new()
     {
-        15, // Yume
-        16, // Neko
-        18, // Reimu
-        19, // Clear
-        21, // Maris
-        22, // Amiya
-        25, // Miku
-        26, // Kagamines
+        CharacterDefine.yume,
+        CharacterDefine.neko,
+        CharacterDefine.reimu,
+        CharacterDefine.clear,
+        CharacterDefine.marisa,
+        CharacterDefine.ark_nights_amiya,
+        CharacterDefine.hastune_miku,
+        CharacterDefine.kagamine_rin_len,
     };
 
     public static string Girl
