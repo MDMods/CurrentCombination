@@ -4,7 +4,7 @@ Shows the current selected character and elfin in the song selection menu and th
 
 ## Features
 
-* Displays on the song select menu and on the selected son menu.
+* Displays on the [song select menu](#song-menu) and on the [selected song menu](#song-view).
 * Updates immediatly even when changing localization.
 * Enable/disable the text from settings.
 
