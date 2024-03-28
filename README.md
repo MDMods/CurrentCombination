@@ -24,3 +24,17 @@ Inside the MelonPreferences.cfg you can find two boolean options for the mod.
 ### Song view
 
 ![alt text](Media/SongMenu.jpg)
+
+## Installation
+
+### Prerequisites
+
+* Make sure you have `MelonLoader 0.6.1` or higher installed and working on your Muse Dash.
+
+### Steps
+
+1. Download the latest release from [releases](https://github.com/MDMods/CurrentCombination/releases/latest).
+2. Move `CurrentCombination.dll` to `${Your muse dash folder}/Mods`.
+3. Enable / Disable the text from the configuration file found at `${Your muse dash folder}/UserData/MelonPreferences.cfg`.
+
+##  ❗Check out my other [mods](https://github.com/Asgragrt#musedash-modding)❗
