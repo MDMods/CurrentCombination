@@ -18,6 +18,7 @@ internal static class UIManager
     // Girl and elfin
     //--------------------------------------------------------------------+
     internal static Text GirlObject { get; private set; }
+
     internal static Text ElfinObject { get; private set; }
 
     private static void CreateText(out Text textObject, string textName, Text baseText, Transform baseTransform,
@@ -41,6 +42,7 @@ internal static class UIManager
             baseText,
             baseTransform,
             new Vector3(6f, -5f, 100f));
+
         MainText = mainText;
     }
 
@@ -58,11 +60,13 @@ internal static class UIManager
     {
         if (!ShowInSongView) return;
         if (GirlObject != null) return;
+
         CreateText(out var girlObject,
             "GirlDisplayObject",
             baseObject,
             baseTransform,
             new Vector3(7.5f, -4.6f, 100f));
+
         GirlObject = girlObject;
     }
 
@@ -70,11 +74,13 @@ internal static class UIManager
     {
         if (!ShowInSongView) return;
         if (ElfinObject != null) return;
+
         CreateText(out var elfinObject,
             "ElfinDisplayObject",
             baseObject,
             baseTransform,
             new Vector3(7.5f, -5f, 100f));
+
         ElfinObject = elfinObject;
     }
 
