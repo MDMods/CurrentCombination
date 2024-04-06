@@ -1,11 +1,14 @@
-﻿using HarmonyLib;
+﻿using CurrentCombination.Managers;
+using HarmonyLib;
 using Il2Cpp;
 using Il2CppAssets.Scripts.UI.Panels;
 using UnityEngine;
 using UnityEngine.UI;
-using static CurrentCombination.Managers.UIManager;
 
 namespace CurrentCombination.Patches;
+
+using static ModManager;
+using static UIManager;
 
 [Harmony]
 internal static class CreateComponentsPatch
@@ -14,6 +17,9 @@ internal static class CreateComponentsPatch
     [HarmonyPostfix]
     internal static void PnlStagePostfix(PnlStage __instance)
     {
+        UpdateGirl();
+        UpdateElfin();
+
         CreateMainText(__instance.artistNameTitle, GameObject.Find("Info").transform.Find("Bottom"));
         UpdateMainText();
     }
