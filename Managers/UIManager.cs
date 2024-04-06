@@ -49,10 +49,13 @@ internal static class UIManager
     internal static void UpdateMainText()
     {
         if (MainText == null) return;
-        var text = string.Empty;
-        text += Girl;
+        
+        var text = Girl;
+        
         if (Girl.Length > 0 && Elfin.Length > 0) text += " / ";
+        
         text += Elfin;
+        
         MainText.text = text;
     }
 
