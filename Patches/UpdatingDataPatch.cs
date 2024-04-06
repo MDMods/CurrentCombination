@@ -7,15 +7,15 @@ namespace CurrentCombination.Patches;
 [HarmonyPatch(typeof(DataHelper))]
 internal static class UpdatingDataPatch
 {
-    [HarmonyPostfix]
     [HarmonyPatch(nameof(DataHelper.selectedRoleIndex), MethodType.Setter)]
+    [HarmonyPostfix]
     internal static void GirlSetter()
     {
         UpdateGirl();
     }
 
-    [HarmonyPostfix]
     [HarmonyPatch(nameof(DataHelper.selectedElfinIndex), MethodType.Setter)]
+    [HarmonyPostfix]
     internal static void ElfinSetter()
     {
         UpdateElfin();

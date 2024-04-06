@@ -5,7 +5,7 @@ using static CurrentCombination.Managers.ModManager;
 namespace CurrentCombination.Patches;
 
 [HarmonyPatch(typeof(SwitchLanguages), nameof(SwitchLanguages.OnClick))]
-internal class LocalizationUpdatePatch
+internal static class LocalizationUpdatePatch
 {
     internal static void Postfix()
     {

@@ -10,16 +10,16 @@ namespace CurrentCombination.Patches;
 [Harmony]
 internal static class CreateComponentsPatch
 {
-    [HarmonyPostfix]
     [HarmonyPatch(typeof(PnlStage), nameof(PnlStage.Awake))]
+    [HarmonyPostfix]
     internal static void PnlStagePostfix(PnlStage __instance)
     {
         CreateMainText(__instance.artistNameTitle, GameObject.Find("Info").transform.Find("Bottom"));
         UpdateMainText();
     }
 
-    [HarmonyPostfix]
     [HarmonyPatch(typeof(PnlPreparation), nameof(PnlPreparation.Awake))]
+    [HarmonyPostfix]
     internal static void PnlPreparationPostfix(PnlPreparation __instance)
     {
         if (GirlObject != null && ElfinObject != null) return;
