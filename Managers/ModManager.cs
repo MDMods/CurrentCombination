@@ -1,26 +1,14 @@
 ﻿using Il2CppAssets.Scripts.Database;
 using Il2CppAssets.Scripts.PeroTools.Commons;
 using Il2CppAssets.Scripts.PeroTools.Managers;
-using Il2CppPeroPeroGames.GlobalDefines;
 
 namespace CurrentCombination.Managers;
 
 internal static class ModManager
 {
     private static string _girl = string.Empty;
-    private static string _elfin = string.Empty;
 
-    private static readonly HashSet<int> NotBaseCharacters =
-    [
-        CharacterDefine.yume,
-        CharacterDefine.neko,
-        CharacterDefine.reimu,
-        CharacterDefine.clear,
-        CharacterDefine.marisa,
-        CharacterDefine.ark_nights_amiya,
-        CharacterDefine.hastune_miku,
-        CharacterDefine.kagamine_rin_len,
-    ];
+    private static string _elfin = string.Empty;
 
     internal static string Girl
     {
@@ -59,6 +47,7 @@ internal static class ModManager
     internal static void UpdateGirl()
     {
         var characterIndex = DataHelper.selectedRoleIndex;
+
         if (characterIndex < 0)
         {
             Girl = "";
@@ -67,7 +56,10 @@ internal static class ModManager
 
         var character = Singleton<ConfigManager>.instance?.GetJson("character", true)?[characterIndex];
 
-        if (NotBaseCharacters.Contains(characterIndex))
+        var configCharacter = Singleton<ConfigManager>.instance?.GetConfigObject<DBConfigCharacter>();
+        var characterType = configCharacter?.GetCharacterInfoByIndex(characterIndex).characterType ?? "";
+
+        if (string.Equals(characterType, "Special"))
         {
             Girl = character?["characterName"]?.ToString() ?? "";
             return;
@@ -79,6 +71,7 @@ internal static class ModManager
     internal static void UpdateElfin()
     {
         var elfinIndex = DataHelper.selectedElfinIndex;
+
         if (elfinIndex < 0)
         {
             Elfin = "";
