@@ -1,4 +1,5 @@
-﻿using MelonLoader;
+﻿using CurrentCombination.Properties;
+using MelonLoader;
 
 namespace CurrentCombination.Managers;
 
@@ -14,7 +15,7 @@ internal static class SettingsManager
 
     public static void Load()
     {
-        var settings = MelonPreferences.CreateCategory("CurrentCombination");
+        var settings = MelonPreferences.CreateCategory(MelonBuildInfo.ModName);
         _showInSongsMenu = settings.CreateEntry(nameof(ShowInSongsMenu), true);
         _showInSongView = settings.CreateEntry(nameof(ShowInSongView), true);
     }

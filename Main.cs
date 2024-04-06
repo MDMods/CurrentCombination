@@ -1,4 +1,5 @@
 ﻿using CurrentCombination.Managers;
+using CurrentCombination.Properties;
 using MelonLoader;
 
 namespace CurrentCombination;
@@ -9,7 +10,7 @@ public class Main : MelonMod
     {
         SettingsManager.Load();
         UIManager.Load();
-        LoggerInstance.Msg("CurrentCombination has loaded correctly!");
+        LoggerInstance.Msg($"{MelonBuildInfo.ModName} has loaded correctly!");
     }
 
     public override void OnSceneWasLoaded(int buildIndex, string sceneName)
