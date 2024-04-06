@@ -54,18 +54,20 @@ internal static class ModManager
             return;
         }
 
-        var character = Singleton<ConfigManager>.instance?.GetJson("character", true)?[characterIndex];
+        var configManager = Singleton<ConfigManager>.instance;
+        var character = configManager.GetJson("character", true)[characterIndex];
 
-        var configCharacter = Singleton<ConfigManager>.instance?.GetConfigObject<DBConfigCharacter>();
-        var characterType = configCharacter?.GetCharacterInfoByIndex(characterIndex).characterType ?? "";
+        var characterType = configManager.GetConfigObject<DBConfigCharacter>()
+            .GetCharacterInfoByIndex(characterIndex)
+            .characterType;
 
         if (string.Equals(characterType, "Special"))
         {
-            Girl = character?["characterName"]?.ToString() ?? "";
+            Girl = character["characterName"].ToString();
             return;
         }
 
-        Girl = character?["cosName"]?.ToString() ?? "";
+        Girl = character["cosName"].ToString();
     }
 
     internal static void UpdateElfin()
@@ -78,6 +80,8 @@ internal static class ModManager
             return;
         }
 
-        Elfin = Singleton<ConfigManager>.instance?.GetJson("elfin", true)?[elfinIndex]?["name"]?.ToString() ?? "";
+        Elfin = Singleton<ConfigManager>.instance
+            .GetJson("elfin", true)[elfinIndex]
+            ["name"].ToString();
     }
 }
