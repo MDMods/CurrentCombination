@@ -15,6 +15,7 @@ internal static class ModManager
         get => _girl;
         private set
         {
+            if (string.Equals(_girl, value)) return;
             _girl = value;
             UpdateGirlActionInvoke();
         }
@@ -25,6 +26,7 @@ internal static class ModManager
         get => _elfin;
         private set
         {
+            if (string.Equals(_elfin, value)) return;
             _elfin = value;
             UpdateElfinActionInvoke();
         }
