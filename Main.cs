@@ -12,12 +12,4 @@ public class Main : MelonMod
         UIManager.Load();
         LoggerInstance.Msg($"{MelonBuildInfo.ModName} has loaded correctly!");
     }
-
-    public override void OnSceneWasLoaded(int buildIndex, string sceneName)
-    {
-        if (!"UISystem_PC".Equals(sceneName)) return;
-
-        ModManager.UpdateGirl();
-        ModManager.UpdateElfin();
-    }
 }
