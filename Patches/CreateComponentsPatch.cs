@@ -14,7 +14,7 @@ internal static class CreateComponentsPatch
     [HarmonyPatch(typeof(PnlStage), nameof(PnlStage.Awake))]
     internal static void PnlStagePostfix(PnlStage __instance)
     {
-        CreateMainText(__instance.artistNameTitle, GameObject.Find("Info").transform);
+        CreateMainText(__instance.artistNameTitle, GameObject.Find("Info").transform.Find("Bottom"));
         UpdateMainText();
     }
 
