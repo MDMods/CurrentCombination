@@ -1,6 +1,6 @@
-﻿using HarmonyLib;
+﻿using CurrentCombination.Managers;
+using HarmonyLib;
 using Il2CppAssets.Scripts.UI.Specials;
-using static CurrentCombination.Managers.ModManager;
 
 namespace CurrentCombination.Patches;
 
@@ -9,7 +9,6 @@ internal static class LocalizationUpdatePatch
 {
     internal static void Postfix()
     {
-        UpdateGirl();
-        UpdateElfin();
+        ModManager.UpdateAll();
     }
 }
