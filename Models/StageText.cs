@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CurrentCombination.Models;
 
-internal class StageText() : BaseText(nameof(StageText), new Vector3(6f, -5f, 100f))
+internal class StageText() : BaseText(nameof(StageText), new Vector3(6f, -5.05f, 100f))
 {
     protected override string GetText()
     {
