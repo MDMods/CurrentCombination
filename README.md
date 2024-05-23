@@ -2,6 +2,8 @@
 
 Shows the current selected character and elfin in the song selection menu and the song view.
 
+## ❗Check out my other [mods](https://github.com/Asgragrt/AsgraMDMods/blob/main/README.md)❗
+
 ## Features
 
 * Displays on the [song select menu](#song-menu) and on the [selected song menu](#song-view).
@@ -37,5 +39,3 @@ Inside the MelonPreferences.cfg you can find two boolean options for the mod.
 2. Move `CurrentCombination.dll` to `${Your muse dash folder}/Mods`.
 3. Enable / Disable the text from the configuration file found
    at `${Your muse dash folder}/UserData/MelonPreferences.cfg`.
-
-## ❗Check out my other [mods](https://github.com/Asgragrt#musedash-modding)❗
